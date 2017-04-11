@@ -5,37 +5,6 @@
 		<script src="handlebars-latest.js"></script>
 	</head>
 	<body>
-		<script>
-		$(document).ready( function() {
-var source = $("#some-template").html();
-var template = Handlebars.compile(source);
-
-var data = {events: [
-  {
-    "image": "src='images/logo.png' alt='Leon Bridges'",
-    "artist": "Leon Bridges",
-    "venue": "White Water Tavern",
-    "time": "8:00PM",
-    "type": "music",
-
-    "theUrl": "#hello"
-  },
-  {
-    "image": "src='images/logo.png' alt='Coheed & Cambria'",
-    "artist": "Coheed &amp; Cambria",
-    "venue": "Revolution Music Room",
-    "time": "9:00PM",
-    "type": "music",
-
-    "theUrl": "#world"
-  }
-]};
-
-$("body").html(template(data));
-
-});
-
-		</script>
 	
 	<script id="some-template" type="text/x-handlebars-template">
       <div class="border"></div>
@@ -52,7 +21,7 @@ $("body").html(template(data));
         </header>
         {{#each events}}
           <ul id="timeline">
-            <a href="{{theUrl}}" class="featured">
+            <a href="#" class="featured">
               <li class="listing clearfix">
                 <div class="image_wrapper">
                   <img src="{{image}}">
@@ -68,6 +37,42 @@ $("body").html(template(data));
           </ul>
       </div>
       <div class="bottom_border"></div>
-    </script>
+  </script>
+
+
+  <div class="hello">{{> myPartial}}</div>
+
 	</body>
+
+  <script>
+    $(document).ready( function() {
+      Handlebars.registerPartial('myPartial');
+
+    });
+  </script>
+
+  <script>
+    $(document).ready( function() {
+
+      var source = $("#some-template").html();
+      var template = Handlebars.compile(source);
+      var data = {events: [
+        {
+          "image": "src='images/logo.png' alt='Leon Bridges'",
+          "artist": "Leon Bridges",
+          "venue": "White Water Tavern",
+          "time": "8:00PM",
+          "type": "music"
+        },
+        {
+          "image": "src='images/logo.png' alt='Coheed & Cambria'",
+          "artist": "Coheed &amp; Cambria",
+          "venue": "Revolution Music Room",
+          "time": "9:00PM",
+          "type": "music"
+        }
+      ]};
+      $("body").html(template(data));
+    });
+  </script>
 </html>
